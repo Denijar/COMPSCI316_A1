@@ -17,7 +17,7 @@ public class Caesar {
     public Caesar(){
         // Get encryption key
         Scanner keyboard = new Scanner(System.in);
-        System.out.println("Enter a 3 digit number");
+        System.out.println("Enter a 3 digit number (from your UPI)");
         int inputInt = keyboard.nextInt();
         if(inputInt % 26 == 0) key = 7;
         else key = inputInt % 26;
@@ -28,6 +28,8 @@ public class Caesar {
         BufferedReader br = new BufferedReader(new FileReader(inputTextFileName));
         String inputText;
         while ((inputText = br.readLine()) == null){}
+
+        System.out.println("Input text:");
         System.out.println(inputText);
 
         outputText = "";
@@ -42,12 +44,14 @@ public class Caesar {
             outputText += alphabet.get(newNum);
         }
 
+        System.out.println("Output text:");
         System.out.println(outputText);
     }
 
     public void findLetterFrequency(){
         Map<Character, Integer> frequencyMap = new HashMap<>();
 
+        // Iterate through every letter
         for (int i = 0; i < outputText.length(); i++){
             Character letter = outputText.charAt(i);
             if(frequencyMap.containsKey(letter)){
@@ -58,7 +62,25 @@ public class Caesar {
         }
 
         // Java 8 wizardry to list the letter frequencies
-        System.out.println("Letter Frequencies:");
+        System.out.println("Letter frequencies:");
         frequencyMap.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).forEach(System.out::println);
+    }
+
+    public void findBigramFrequency(){
+        Map<String, Integer> frequencyMap = new HashMap<>();
+
+        // Iterate through every pair of adjacent letters
+        for (int i = 0; i < outputText.length() - 1; i++){
+            String bigram = String.valueOf(outputText.charAt(i)) + String.valueOf(outputText.charAt(i + 1));
+            if(frequencyMap.containsKey(bigram)){
+                frequencyMap.put(bigram, frequencyMap.get(bigram)+1);
+            } else {
+                frequencyMap.put(bigram, 1);
+            }
+        }
+
+        // Java 8 wizardry to list the top 10 bigram frequencies
+        System.out.println("Top 10 bigram frequencies:");
+        frequencyMap.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).limit(10).forEach(System.out::println);
     }
 }
