@@ -2,23 +2,25 @@ import java.util.Scanner;
 
 public class Driver {
 
+    final static private int defaultCase = 3;
+
     public static void main(String[] args) {
 
         boolean exit = false;
-        int selection = 3;
+        int selection = defaultCase;
 
         while(!exit){
             switch (selection) {
                 case 1:
                     // Perform Vigenere Cipher encryption
                     System.out.println("Doing Vigenere");
-                    selection = 3;
+                    selection = defaultCase;
                     break;
 
                 case 2:
                     // Perform Caesar Cipher encryption
                     System.out.println("Doing Caesar");
-                    selection = 3;
+                    selection = defaultCase;
                     break;
 
                 case 0:
