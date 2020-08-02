@@ -29,6 +29,7 @@ public class Driver {
                     Caesar caesarEncryptor = new Caesar();
                     try {
                         caesarEncryptor.execute();
+                        caesarEncryptor.findLetterFrequency();
                     } catch (IOException e) {
                         System.err.println("Failed to execute Caesar cipher encryption");
                         e.printStackTrace();

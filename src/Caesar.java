@@ -1,19 +1,18 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Caesar {
 
-    private String inputTextFileName = "input/plaintext.txt";
+    private final String inputTextFileName = "input/plaintext.txt";
 
-    private Character[] alphabetChar = new Character[]{'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-    private List<Character> alphabet = Arrays.asList(alphabetChar);
+    private final Character[] alphabetChar = new Character[]{'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+    private final List<Character> alphabet = Arrays.asList(alphabetChar);
 
-    private int key;
-    private String inputText;
+    private final int key;
+
+    private String outputText;
 
     public Caesar(){
         // Get encryption key
@@ -27,10 +26,11 @@ public class Caesar {
     public void execute() throws IOException {
 
         BufferedReader br = new BufferedReader(new FileReader(inputTextFileName));
+        String inputText;
         while ((inputText = br.readLine()) == null){}
         System.out.println(inputText);
 
-        String outputText = "";
+        outputText = "";
 
         for (int i = 0; i < inputText.length(); i++){
             // Find the new index value for each character
@@ -43,5 +43,22 @@ public class Caesar {
         }
 
         System.out.println(outputText);
+    }
+
+    public void findLetterFrequency(){
+        Map<Character, Integer> frequencyMap = new HashMap<>();
+
+        for (int i = 0; i < outputText.length(); i++){
+            Character letter = outputText.charAt(i);
+            if(frequencyMap.containsKey(letter)){
+                frequencyMap.put(letter, frequencyMap.get(letter)+1);
+            } else {
+                frequencyMap.put(letter, 1);
+            }
+        }
+
+        // Java 8 wizardry to list the letter frequencies
+        System.out.println("Letter Frequencies:");
+        frequencyMap.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).forEach(System.out::println);
     }
 }
