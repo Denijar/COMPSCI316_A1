@@ -32,13 +32,13 @@ public class Vigenere {
         String outputText = "";
 
         for (int i = 0; i < inputText.length(); i++){
-            // Find index value new character
+            // Find index value of new character
             Character inputLetter = inputText.charAt(i);
             int totalNum = alphabet.indexOf(inputLetter) + alphabet.indexOf(key.charAt(keyPosition));
             int newNum = totalNum % 26;
 
             // Add character to the output
-            outputText+=alphabet.get(newNum);
+            outputText += alphabet.get(newNum);
 
             // Iterate through the key
             if(keyPosition == (key.length() - 1)) keyPosition = 0;
