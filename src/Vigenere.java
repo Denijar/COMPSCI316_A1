@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class Vigenere {
 
     private String inputTextFileName = "input/plaintext.txt";
+
     private Character[] alphabetChar = new Character[]{'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
     private List<Character> alphabet = Arrays.asList(alphabetChar);
 
@@ -18,7 +19,7 @@ public class Vigenere {
     public Vigenere(){
         // Get encryption key
         Scanner keyboard = new Scanner(System.in);
-        System.out.println("Enter the key");
+        System.out.println("Enter the key (first 3 letters of UPI)");
         key = keyboard.nextLine();
     }
 
@@ -26,6 +27,8 @@ public class Vigenere {
         // Get text to encrypt
         BufferedReader br = new BufferedReader(new FileReader(inputTextFileName));
         while ((inputText = br.readLine()) == null){}
+
+        System.out.println("Input text:");
         System.out.println(inputText);
 
         int keyPosition = 0;
@@ -46,6 +49,7 @@ public class Vigenere {
         }
 
         // Print the result
+        System.out.println("Output text:");
         System.out.println(outputText);
 
     }
