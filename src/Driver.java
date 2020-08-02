@@ -14,9 +14,9 @@ public class Driver {
             switch (selection) {
                 case 1:
                     // Perform Vigenere cipher encryption
-                    Vigenere encrypter = new Vigenere();
+                    Vigenere vigenereEncryptor = new Vigenere();
                     try {
-                        encrypter.execute();
+                        vigenereEncryptor.execute();
                     } catch (IOException e) {
                         System.err.println("Failed to execute Vigenere cipher encryption");
                         e.printStackTrace();
@@ -26,6 +26,13 @@ public class Driver {
 
                 case 2:
                     // Perform Caesar cipher encryption
+                    Caesar caesarEncryptor = new Caesar();
+                    try {
+                        caesarEncryptor.execute();
+                    } catch (IOException e) {
+                        System.err.println("Failed to execute Caesar cipher encryption");
+                        e.printStackTrace();
+                    }
                     selection = defaultCase;
                     break;
 
