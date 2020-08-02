@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Driver {
@@ -12,14 +13,19 @@ public class Driver {
         while(!exit){
             switch (selection) {
                 case 1:
-                    // Perform Vigenere Cipher encryption
-                    System.out.println("Doing Vigenere");
+                    // Perform Vigenere cipher encryption
+                    Vigenere encrypter = new Vigenere();
+                    try {
+                        encrypter.execute();
+                    } catch (IOException e) {
+                        System.err.println("Failed to execute Vigenere cipher encryption");
+                        e.printStackTrace();
+                    }
                     selection = defaultCase;
                     break;
 
                 case 2:
-                    // Perform Caesar Cipher encryption
-                    System.out.println("Doing Caesar");
+                    // Perform Caesar cipher encryption
                     selection = defaultCase;
                     break;
 
