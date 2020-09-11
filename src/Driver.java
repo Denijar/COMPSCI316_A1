@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Driver {
 
-    final static private int defaultCase = 3;
+    final static private int defaultCase = 10;
 
     public static void main(String[] args) {
 
@@ -38,6 +38,12 @@ public class Driver {
                     selection = defaultCase;
                     break;
 
+                case 3:
+                    RSA rsa = new RSA();
+                    rsa.execute();
+                    selection = defaultCase;
+                    break;
+
                 case 0:
                     System.out.println("Exiting");
                     exit = true;
@@ -45,7 +51,7 @@ public class Driver {
 
                 default:
                     Scanner keyboard = new Scanner(System.in);
-                    System.out.println("Press 1 for Vigenere cipher, 2 for Caesar cipher, 0 to exit");
+                    System.out.println("Press 1 for Vigenere cipher, 2 for Caesar cipher, 3 for RSA, 0 to exit");
                     selection = keyboard.nextInt();
             }
 
